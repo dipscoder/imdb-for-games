@@ -4,11 +4,11 @@ import { popularGameUrl, upcomingGameUrl, newGameUrl } from "../api";
 // Normally we return the object from an action
 // But as we are using the redux-thunk for asynchronous behaviour , we will return a function
 const loadGames = () => {
-    return (dispatch) => {
+    return async (dispatch) => {
         // Axios Fetch
-        const popularDate = axios.get(popularGameUrl())
-        const upcomingDate = axios.get(upcomingGameUrl())
-        const newData = axios.get(newGameUrl())
+        const popularDate = await axios.get(popularGameUrl())
+        const upcomingDate = await axios.get(upcomingGameUrl())
+        const newData = await axios.get(newGameUrl())
 
         dispatch({
             type: "FETCH_GAME",
@@ -20,3 +20,5 @@ const loadGames = () => {
         })
     }
 }
+
+export default loadGames

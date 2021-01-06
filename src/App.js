@@ -1,18 +1,16 @@
 import React, { useEffect } from "react";
-import {popularGameUrl} from "./api";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import loadGames from "./actions/gameAction";
+
 
 function App() {
 
+  const dispatch = useDispatch()
+
   useEffect(() => {
-    getDate()
+    dispatch(loadGames())
   }, [])
 
-  const getDate = async () => {
-    const fetchData = await axios.get(popularGameUrl())
-    // const data = await fetchData.json()
-    console.log(fetchData);
-  }
 
   return (
     <div className="App">
