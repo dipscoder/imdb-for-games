@@ -1,10 +1,13 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+
 //styling and animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
-
-import { useDispatch } from "react-redux";
+// Components and pages
 import loadDetail from "../actions/detailAction";
+
 
 const transition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }
 
@@ -18,9 +21,11 @@ function Game({game : { name, released, background_image, id }}) {
   return (
     
     <StyledGame onClick={fetchDetail}>
-      <h3>Game name : {name}</h3>
-      <p>Released Date: {released}</p>
-      <motion.img whileHover={{scale : 1.05}} transition={transition} src={background_image} alt={name} />
+      <Link to={`/game/${id}`}>
+        <h3>Game name : {name}</h3>
+        <p>Released Date: {released}</p>
+        <motion.img whileHover={{scale : 1.05}} transition={transition} src={background_image} alt={name} />
+      </Link>
     </StyledGame>
   );
 }
@@ -30,11 +35,11 @@ const StyledGame = styled(motion.div)`
   box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.2);
   text-align: center;
   border-radius: 1rem;
+  cursor: pointer;
   img {
     width: 100%;
     height: 40vh;
     object-fit: cover;
-    cursor: pointer;
   }
 `;
 
