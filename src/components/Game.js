@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import loadDetail from "../actions/detailAction";
 
 
-const transition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }
+// const transition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }
 
 function Game({game : { name, released, background_image, id }}) {
 
@@ -24,7 +24,7 @@ function Game({game : { name, released, background_image, id }}) {
       <Link to={`/game/${id}`}>
         <h3>Game name : {name}</h3>
         <p>Released Date: {released}</p>
-        <motion.img whileHover={{scale : 1.05}} transition={transition} src={background_image} alt={name} />
+        <img src={background_image} alt={name} />
       </Link>
     </StyledGame>
   );
