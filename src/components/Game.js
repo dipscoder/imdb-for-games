@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 // Components and pages
 import loadDetail from "../actions/detailAction";
+import { smallImage } from "../util";
 
 
 // const transition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }
@@ -25,7 +26,8 @@ function Game({game : { name, released, background_image, id }}) {
       <Link to={`/game/${id}`}>
         <h3>Game name : {name}</h3>
         <p>Released Date: {released}</p>
-        <img src={background_image} alt={name} />
+        <img src={smallImage(background_image,640)} alt={name} />
+        {/* <img src={background_image} alt={name} /> */}
       </Link>
     </StyledGame>
   );
