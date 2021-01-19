@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useDispatch } from "react-redux";
 import { gameDetailURL, gameScreenshotsURL } from "../api";
 
 const loadDetail = (id) => {
