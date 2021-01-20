@@ -14,6 +14,8 @@ import { smallImage } from "../util";
 
 function Game({game : { name, released, background_image, id }}) {
 
+  const stringPathId = id.toString()
+  // console.log(id);
   const dispatch = useDispatch()
   const fetchDetail = () => {
       document.body.style.overflow = "hidden";
@@ -21,13 +23,17 @@ function Game({game : { name, released, background_image, id }}) {
   }
 
   return (
-    
-    <StyledGame onClick={fetchDetail}>
+    <StyledGame layoutId={stringPathId} onClick={fetchDetail}>
       <Link to={`/game/${id}`}>
-        <h3>Game name : {name}</h3>
+        <motion.h3 layoutId={`title ${stringPathId}`}>
+          Game name : {name}
+        </motion.h3>
         <p>Released Date: {released}</p>
-        <img src={smallImage(background_image,640)} alt={name} />
-        {/* <img src={background_image} alt={name} /> */}
+        <motion.img
+          layoutId={`image ${stringPathId}`}
+          src={smallImage(background_image, 640)}
+          alt={name}
+        />
       </Link>
     </StyledGame>
   );

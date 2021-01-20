@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import { motion, AnimateSharedLayout, AnimatePresence } from "framer-motion";
 
 import loadGames from "../actions/gameAction";
 import Game from "../components/Game";
@@ -26,28 +26,33 @@ function Home() {
   
   return (
     <GameList>
-      {pathId && <GameDetail />}
-      <h2>Upcoming Games</h2>
-      <Games>
-        {upcomingGames.map((game) => (
-          <Game key={game.id} game={game} />
-        ))}
-      </Games>
+      <AnimateSharedLayout type="crossfade" >
+        <AnimatePresence>
+          {pathId && <GameDetail pathId={pathId} />}
+        </AnimatePresence>
 
-      <h2>Popular Games</h2>
-      <Games>
-        {popularGames.map((game) => (
-          <Game key={game.id} game={game} />
-        ))}
-      </Games>
+        <h2>Upcoming Games</h2>
+        <Games>
+          {upcomingGames.map((game) => (
+            <Game key={game.id} game={game} />
+            ))}
+        </Games>
 
-      <h2>New Games</h2>
-      <Games>
-        {newGames.map((game) => (
-          <Game key={game.id} game={game} />
-        ))}
-      </Games>
+        <h2>Popular Games</h2>
+        <Games>
+          {popularGames.map((game) => (
+            <Game key={game.id} game={game} />
+            ))}
+        </Games>
+
+        <h2>New Games</h2>
+        <Games>
+          {newGames.map((game) => (
+            <Game key={game.id} game={game} />
+            ))}
+        </Games>
       
+      </AnimateSharedLayout>
 
     </GameList>
 

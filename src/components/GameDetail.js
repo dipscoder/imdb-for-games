@@ -7,8 +7,9 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { smallImage } from "../util";
 
-const GameDetail = () => {
+const GameDetail = ({ pathId }) => {
   // Exit Detail Page
+  // console.log(pathId);
   const history = useHistory()
   // console.log(history);
   
@@ -26,10 +27,10 @@ const GameDetail = () => {
     <>
       { !isLoading && (
       <CardShadow className="shadow" onClick={extiDetailPage}>
-        <Detail>
+        <Detail layoutId={pathId}>
           <Stats>
             <div className="rating">
-              <h3>{gameDetail.name}</h3>
+              <motion.h3 layoutId={`title ${pathId}`} >{gameDetail.name}</motion.h3>
               <p>Rating: {gameDetail.rating}</p>
             </div>
             <Info>
@@ -42,7 +43,7 @@ const GameDetail = () => {
             </Info>
           </Stats>
           <Media>
-            <img src={smallImage(gameDetail.background_image,1280)} alt={gameDetail.background_image} />
+            <motion.img layoutId={`image ${pathId}`} src={smallImage(gameDetail.background_image,1280)} alt={gameDetail.background_image} />
           </Media>
           <Description>
             <p>{gameDetail.description_raw}</p>
