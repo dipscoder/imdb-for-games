@@ -7,12 +7,20 @@
 // regex - https://youtu.be/rhzKDrUiJVk
 
 export const smallImage = (imagePath, size) => {
-  const image = imagePath.match(/media\/games/)
+  // ! Have to define this condition because of this error --> TypeError: Cannot read property 'match' of null
+  // Reason for the error - Fetching a game(new game) from the api which does have any background_image
+  if(imagePath === null){
+    return;
+  }
+  else{
+
+    const image = imagePath.match(/media\/games/)
     ? imagePath.replace("/media/games/", `/media/resize/${size}/-/games/`)
     : imagePath.replace(
-        "/media/screenshots/",
-        `/media/resize/${size}/-/screenshots/`
+      "/media/screenshots/",
+      `/media/resize/${size}/-/screenshots/`
       );
       return image;
+    } 
 };
 
