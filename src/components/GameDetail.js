@@ -13,6 +13,9 @@ import gamepad from "../img/gamepad.svg";
 import nintendo from "../img/nintendo.svg";
 import steam from "../img/steam.svg";
 import xbox from "../img/xbox.svg";
+// Star Images
+import starEmpty from "../img/star-empty.png";
+import starFull from "../img/star-full.png";
 
 const GameDetail = ({ pathId }) => {
   // Exit Detail Page
@@ -50,6 +53,21 @@ const GameDetail = ({ pathId }) => {
     }
   }
 
+  // Rendering Stars
+  const getStars = () => {
+    const stars = [];
+    const ratings = Math.floor(gameDetail.rating);
+    for (let i = 1; i <= 5; i++) {
+      if (i <= ratings) {
+        stars.push(<img src={starFull} alt="stars" key={i} />)
+      } else {
+        stars.push(<img src={starEmpty} alt="stars" key={i} />)
+      } 
+    }
+    return stars;
+  }
+
+
   return (
     <>
       { !isLoading && (
@@ -59,6 +77,7 @@ const GameDetail = ({ pathId }) => {
             <div className="rating">
               <motion.h3 layoutId={`title ${pathId}`} >{gameDetail.name}</motion.h3>
               <p>Rating: {gameDetail.rating}</p>
+              {getStars()}
             </div>
             <Info>
               <h3>Platforms</h3>
@@ -124,6 +143,11 @@ const Stats = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  img {
+    width: 2rem;
+    height: 2rem;
+    display: inline;
+  }
 `;
 const Info = styled(motion.div)`
   text-align: center;
