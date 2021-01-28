@@ -95,6 +95,7 @@ const GameDetail = ({ pathId }) => {
             <p>{gameDetail.description_raw}</p>
           </Description>
           <div className="gallery">
+          { gameDetail.clip  && <video controls width="100%"> <source src={gameDetail.clip.clip} type="video/mp4" /> </video>}
             {screenshots.results.map((screen) => (
               <img src={smallImage(screen.image,1280)} key={screen.id} alt={screen.image} />
               ))}
